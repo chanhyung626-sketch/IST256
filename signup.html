@@ -27,20 +27,43 @@
         <div class="container">
 
             <div class="border rounded-3 p-4 mb-4">
-                <h5>section</h5>
-                <p class="mb-0">content</p>
+                <h5>Signup</h5>
+                <p class="mb-0">View upcoming and previous conferences, create listings for new conferences, RSVP, and more. Fill in the form below to create an account and get started.</p>
             </div>
 
             <div class="border rounded-3 p-4 mb-4">
-                <h5>section</h5>
-                <p class="mb-0">content</p>
-            </div>
+                <h5>New Account</h5>
+                <form>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" id="email" required />
+                    </div>
 
-            <div class="border rounded-3 p-4 mb-4">
-                <h5>section</h5>
-                <p class="mb-0">content</p>
-            </div>
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Full Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="fullName" required />
+                    </div>
 
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone Number <span class="text-muted">(optional)</span></label>
+                        <input type="tel" class="form-control" id="phone" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="age" class="form-label">Age<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="age" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="address" required />
+                    </div>
+
+                    <div class="text-muted small mb-3">Required fields marked with: <span class="text-danger">*</span></div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
         </div>
     </main>
 
