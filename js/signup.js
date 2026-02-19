@@ -3,6 +3,7 @@ let nameInputElement = document.getElementById('fullName');
 let phoneInputElement = document.getElementById('phone');
 let ageInputElement = document.getElementById('age');
 let addressInputElement = document.getElementById('address');
+let duplicateDiv = document.getElementById('duplicate-alert');
 
 document.querySelector('form').addEventListener('submit', validateNewUser);
 
@@ -124,18 +125,48 @@ function validateAddress(address) {
 }
 
 /**
- * Removes all bootstrap is-invalid and text-danger classes from all signup form input fields.
+ * Removes all bootstrap alert classes from all signup form input fields.
  */
 function resetFormInputStyles() {
+    // is-invalid adds a red border to input fields
     emailInputElement.classList.remove('is-invalid');
     nameInputElement.classList.remove('is-invalid');
     phoneInputElement.classList.remove('is-invalid');
     ageInputElement.classList.remove('is-invalid');
     addressInputElement.classList.remove('is-invalid');
 
+    // text-danger makes text red
     emailInputElement.classList.remove('text-danger');
     nameInputElement.classList.remove('text-danger');
     phoneInputElement.classList.remove('text-danger');
     ageInputElement.classList.remove('text-danger');
     addressInputElement.classList.remove('text-danger');
+
+    // d-none hides the duplicate div
+    duplicateDiv.classList.add('d-none');
+}
+
+/**
+ * Attempts to save a validated user object to localStorage.
+ * Duplicate users are not allowed. A duplicate user would be a user trying to create a new user with an email address
+ * that is already being stored in localStorage.
+ * @param newUser The user object to save to localStorage.
+ * @returns {boolean} True if this is a new unique user object. False if there is already a user object in localStorage
+ * using the given user.email.
+ */
+function saveUser(newUser) {
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+
+    // duplicate users are determined by email, one email = one user
+    const isDuplicate = users.some((storedUser) => storedUser.email === newUser.email);
+
+    if (isDuplicate) {
+        // d-none hides the duplicate div
+        duplicateDiv.classList.remove('d-none');
+        return false;
+    } else {
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users));
+        return true;
+    }
 }
