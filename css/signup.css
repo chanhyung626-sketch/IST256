@@ -1,13 +1,3 @@
 :root {
-    --bg-info: #3e3e3e;
-    --bg-accent: #ffffff;
-    --text: #000000;
-    --text-dark: #ffffff;
-    --text-accent: #3c5cdc;
-}
 
-.navbar, footer, .navbar a, footer a  {
-    background-color: var(--bg-info);
-    color: var(--text-dark);
-    text-decoration: none;
 }
