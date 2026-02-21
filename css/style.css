@@ -4,6 +4,7 @@
     --brand-color: #1e407c;
     --brand-color-dark: #001E44;
     --brand-color-light: #96BEE6;
+    --div-shadow: 2px 2px 2px var(--brand-color-dark);
 }
 
 html {

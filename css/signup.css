@@ -1,3 +1,11 @@
-:root {
+@import url("style.css");
 
+#signup-info {
+    background-color: var(--brand-color-dark);
+    color: white;
+    box-shadow: var(--div-shadow);
+}
+
+#signup-form {
+    box-shadow: var(--div-shadow);
 }
