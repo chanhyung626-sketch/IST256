@@ -30,7 +30,7 @@ function renderUsers() {
       <td>${u.address ?? ""}</td>
       <td>${u.phone ?? ""}</td>
       <td class="text-end">
-        <a class="btn btn-sm btn-outline-primary" href="../signup.html?edit=index">Edit</a>
+        <a class="btn btn-sm btn-outline-primary" href="../signup.html?edit=${index}">Edit</a>
         <button class="btn btn-sm btn-outline-danger ms-1" data-index="${index}">Delete</button>
       </td>
     `;
