@@ -118,11 +118,30 @@ function validateName(name) {
     return name.length > 0;
 }
 
+/**
+ * Validates that the user input a valid email address.
+ * Valid emails are of the format example@example.com.
+ * In other words, a valid email is three sections of characters separated by @ and .
+ * @param email The input email address.
+ * @returns {boolean} True if the input email address matches format specifications. False otherwise.
+ */
 function validateEmail(email) {
+    // this regex validates basic email format (local@domain.tld)
+    // it ensures three parts separated by @ and .
+    // each part must be one or more characters that are not whitespace or @
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+/**
+ * Validates that the user input a valid phone number.
+ * Valid phone numbers are of the format ###-###-#### and may only be numbers.
+ * @param phone The input phone number.
+ * @returns {boolean} True if the input phone number matches format and is all numerical. False otherwise.
+ */
 function validatePhone(phone) {
+    // this regex validates a phone number in the format (###-###-####) only
+    // it ensures three parts separated by -
+    // the first part must be three digits, middle part must be three digits, and ending must be four digits
     return /^\d{3}-\d{3}-\d{4}$/.test(phone);
 }
 
@@ -134,19 +153,25 @@ function validateAddress(address) {
     return address.length > 0;
 }
 
+/**
+ * Removes all bootstrap alert classes from all signup form input fields.
+ */
 function resetFormInputStyles() {
+    // is-invalid adds a red border to input fields
     emailInputElement.classList.remove('is-invalid');
     nameInputElement.classList.remove('is-invalid');
     phoneInputElement.classList.remove('is-invalid');
     ageInputElement.classList.remove('is-invalid');
     addressInputElement.classList.remove('is-invalid');
 
+    // text-danger makes text red
     emailInputElement.classList.remove('text-danger');
     nameInputElement.classList.remove('text-danger');
     phoneInputElement.classList.remove('text-danger');
     ageInputElement.classList.remove('text-danger');
     addressInputElement.classList.remove('text-danger');
 
+    // d-none hides the duplicate div
     duplicateDiv.classList.add('d-none');
     failureDiv.classList.add('d-none');
     successDiv.classList.add('d-none');
