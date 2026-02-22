@@ -1,17 +1,25 @@
+@import url("style.css");
+
 :root {
---bg-info: #3e3e3e;
+    --bg-info: #3e3e3e;
     --bg-accent: #ffffff;
     --text: #000000;
     --text-dark: #ffffff;
     --text-accent: #3c5cdc;
 }
 
-.navbar, footer, .navbar a, footer a  {
+.navbar, footer, .navbar a, footer a {
     background-color: var(--bg-info);
     color: var(--text-dark);
     text-decoration: none;
 }
 
-body {
-    background-color: #F4F6FA;
+#signup-info {
+    background-color: var(--brand-color-dark);
+    color: white;
+    box-shadow: var(--div-shadow);
+}
+
+#signup-form {
+    box-shadow: var(--div-shadow);
 }

@@ -1,0 +1,27 @@
+@import url('style.css');
+
+#hero-banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card {
+    text-align: center;
+    padding: 20px;
+}
+
+.card img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+#hero-section {
+    box-shadow: var(--div-shadow);
+}
+
+#testimonials {
+    background-color: var(--brand-color-dark);
+    color: white;
+    box-shadow: var(--div-shadow);
+}
