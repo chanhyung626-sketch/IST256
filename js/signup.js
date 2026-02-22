@@ -9,6 +9,10 @@ let successDiv = document.getElementById('success-alert');
 
 document.querySelector('form').addEventListener('submit', validateNewUser);
 
+const params = new URLSearchParams(window.location.search);
+const editIndexRaw = params.get("edit");
+const editIndex = editIndexRaw !== null ? Number(editIndexRaw) : null;
+
 class User {
     email;
     name;
@@ -25,22 +29,50 @@ class User {
     }
 }
 
-/**
- * Checks all signup form input fields for valid input.
- * If any input is invalid, the submission is stopped and the page is updated to inform the user of the mistake.
- * @param event The submission button click event on the signup form.
- */
+document.addEventListener("DOMContentLoaded", function () {
+    prefillFormIfEditMode();
+});
+
+function prefillFormIfEditMode() {
+    if (editIndex === null || Number.isNaN(editIndex)) return;
+
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const user = users[editIndex];
+
+    if (!user) {
+        alert("Invalid edit link. Returning to home.");
+        window.location.href = "index.html";
+        return;
+    }
+
+    nameInputElement.value = user.name || "";
+    emailInputElement.value = user.email || "";
+    phoneInputElement.value = user.phone || "";
+    ageInputElement.value = user.age || "";
+    addressInputElement.value = user.address || "";
+
+    const headers = document.querySelectorAll("h5");
+    headers.forEach(h => {
+        if (h.textContent.trim().toLowerCase() === "new account") {
+            h.textContent = "Update Account";
+        }
+    });
+
+    const btn = document.getElementById("submitBtn");
+    if (btn) btn.textContent = "Update";
+}
+
 function validateNewUser(event) {
     resetFormInputStyles();
     event.preventDefault();
     let invalidInput = false;
 
     const newUser = new User(
-        nameInputElement.value,
-        emailInputElement.value,
-        phoneInputElement.value,
-        ageInputElement.value,
-        addressInputElement.value,
+        nameInputElement.value.trim(),
+        emailInputElement.value.trim(),
+        phoneInputElement.value.trim(),
+        ageInputElement.value.trim(),
+        addressInputElement.value.trim(),
     );
 
     if (!validateName(newUser.name)) {
@@ -68,116 +100,81 @@ function validateNewUser(event) {
         invalidInput = true;
     }
 
+    
     if (!invalidInput) {
-        // when we save the user there's a final check for duplicates
         const success = saveUser(newUser);
-        if (success) { // saved user
+        if (success) {
             successDiv.classList.remove('d-none');
-        } else { // duplicate found
+            setTimeout(() => window.location.href = "index.html", 600);
+        } else {
             duplicateDiv.classList.remove('d-none');
         }
-    } else { // bad input
+    } else {
         failureDiv.classList.remove('d-none');
     }
 }
 
-/**
- * Validates that the user input a name of at least one character.
- * @param name The input name.
- * @returns {boolean} True if the input name is at least one character long. False otherwise.
- */
 function validateName(name) {
     return name.length > 0;
 }
 
-/**
- * Validates that the user input a valid email address.
- * Valid emails are of the format example@example.com.
- * In other words, a valid email is three sections of characters separated by @ and .
- * @param email The input email address.
- * @returns {boolean} True if the input email address matches format specifications. False otherwise.
- */
 function validateEmail(email) {
-    // this regex validates basic email format (local@domain.tld)
-    // it ensures three parts separated by @ and .
-    // each part must be one or more characters that are not whitespace or @
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-/**
- * Validates that the user input a valid phone number.
- * Valid phone numbers are of the format ###-###-#### and may only be numbers.
- * @param phone The input phone number.
- * @returns {boolean} True if the input phone number matches format and is all numerical. False otherwise.
- */
 function validatePhone(phone) {
-    // this regex validates a phone number in the format (###-###-####) only
-    // it ensures three parts separated by -
-    // the first part must be three digits, middle part must be three digits, and ending must be four digits
     return /^\d{3}-\d{3}-\d{4}$/.test(phone);
 }
 
-/**
- * Validates that the user input a valid age that is a positive number.
- * @param age The input age.
- * @returns {boolean} True if the input age is a positive number. False if NaN or negative.
- */
 function validateAge(age) {
-    return !isNaN(age) && age > 0;
+    return !isNaN(age) && Number(age) > 0;
 }
 
-/**
- * Validates that the user put in a string of at least one character.
- * @param address The input email address.
- * @returns {boolean} True if the input email address string is at least one character long. False if empty.
- */
 function validateAddress(address) {
     return address.length > 0;
 }
 
-/**
- * Removes all bootstrap alert classes from all signup form input fields.
- */
 function resetFormInputStyles() {
-    // is-invalid adds a red border to input fields
     emailInputElement.classList.remove('is-invalid');
     nameInputElement.classList.remove('is-invalid');
     phoneInputElement.classList.remove('is-invalid');
     ageInputElement.classList.remove('is-invalid');
     addressInputElement.classList.remove('is-invalid');
 
-    // text-danger makes text red
     emailInputElement.classList.remove('text-danger');
     nameInputElement.classList.remove('text-danger');
     phoneInputElement.classList.remove('text-danger');
     ageInputElement.classList.remove('text-danger');
     addressInputElement.classList.remove('text-danger');
 
-    // d-none hides the duplicate div
     duplicateDiv.classList.add('d-none');
     failureDiv.classList.add('d-none');
     successDiv.classList.add('d-none');
 }
 
-/**
- * Attempts to save a validated user object to localStorage.
- * Duplicate users are not allowed. A duplicate user would be a user trying to create a new user with an email address
- * that is already being stored in localStorage.
- * @param newUser The user object to save to localStorage.
- * @returns {boolean} True if this is a new unique user object. False if there is already a user object in localStorage
- * using the given user.email.
- */
 function saveUser(newUser) {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
 
-    // was there a duplicate email in localStorage?
+    if (editIndex !== null && !Number.isNaN(editIndex)) {
+        if (!users[editIndex]) return false;
+
+        const isDuplicate = users.some((storedUser, idx) =>
+            idx !== editIndex && storedUser.email === newUser.email
+        );
+
+        if (isDuplicate) return false;
+
+        users[editIndex] = newUser;
+        localStorage.setItem('users', JSON.stringify(users));
+        return true;
+    }
+
     const isDuplicate = users.some((storedUser) => storedUser.email === newUser.email);
 
     if (isDuplicate) {
         return false;
     }
 
-    // no duplicate
     users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
     return true;

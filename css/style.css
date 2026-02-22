@@ -5,6 +5,11 @@
     --brand-color-dark: #001E44;
     --brand-color-light: #96BEE6;
     --div-shadow: 2px 2px 2px var(--brand-color-dark);
+    --bg-info: #3e3e3e;
+    --bg-accent: #ffffff;
+    --text: #000000;
+    --text-dark: #ffffff;
+    --text-accent: #3c5cdc;
 }
 
 html {
@@ -46,6 +51,14 @@ h6 {
     background-color: var(--brand-color);
     color: white;
     text-decoration: none;
+}
+
+.navbar .nav-link {
+    color: var(--text-dark);
+}
+
+main .container {
+    max-width: 960px;
 }
 
 .navbar a:hover, footer a:hover {
