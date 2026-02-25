@@ -89,8 +89,10 @@ function saveEntry() {
         $additionalInfo.val()
     );
 
+    // if ?id=x param was present
     if (editId) {
         const index = entries.findIndex(e => e.id === editId);
+        // edit existing entry
         if (index !== -1) {
             entries[index] = entry;
             localStorage.setItem('entries', JSON.stringify(entries));
@@ -102,6 +104,8 @@ function saveEntry() {
             $duplicateAlert.removeClass('d-none');
             return;
         }
+
+        // valid new entry
         entries.push(entry);
         localStorage.setItem('entries', JSON.stringify(entries));
         $successAlert.removeClass('d-none');
