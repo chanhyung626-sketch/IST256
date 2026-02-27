@@ -12,6 +12,10 @@ const $successAlert = $('#success-alert');
 // read url params for edit mode
 const urlParams = new URLSearchParams(window.location.search);
 const editId = urlParams.get('id');
+// change the form if there was a param
+if (editId) {
+    loadEntryForEditing(editId);
+}
 
 class ConferenceEntry {
     id;
@@ -146,4 +150,35 @@ function validateFormat() {
 
 function validateEntryPrice(price) {
     return !isNaN(price) && Number(price) >= 0;
+}
+
+/**
+ * Grabs an existing conference from localStorage if one exists and fill in the form details with that object.
+ * Also changes relevant text on the page to signal the user is now editing and not creating with the form.
+ * @param id The id of the ConferenceEntry object being edited.
+ */
+function loadEntryForEditing(id) {
+    const entries = JSON.parse(localStorage.getItem('entries') || '[]');
+    const entryToEdit = entries.find(e => e.id === id);
+
+    if (entryToEdit) {
+        // update the UI text to indicate "Edit Mode"
+        $('#conference-entry-info h5').text('Edit Conference Entry');
+        $('#conference-entry-info p').text('Update the details for this existing conference.');
+        $('button[type="submit"]').text('Update Entry');
+
+        // populate the standard text inputs
+        $entryId.val(entryToEdit.id).prop('readonly', true); // Make ID read-only so they don't break the reference
+        $title.val(entryToEdit.title);
+        $description.val(entryToEdit.description);
+        $entryPrice.val(entryToEdit.entryPrice);
+        $additionalInfo.val(entryToEdit.additionalInfo);
+
+        // populate the radio buttons
+        $(`input[name="category"][value="${entryToEdit.category}"]`).prop('checked', true);
+        $(`input[name="format"][value="${entryToEdit.format}"]`).prop('checked', true);
+    } else {
+        // id in the URL doesn't exist in local storage
+        alert("We couldn't find an entry with that ID.");
+    }
 }
