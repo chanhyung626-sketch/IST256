@@ -6,12 +6,6 @@
     --text-accent: #3c5cdc;
 }
 
-.navbar, footer, .navbar a, footer a {
-    background-color: var(--bg-info);
-    color: var(--text-dark);
-    text-decoration: none;
-}
-
 #conference-entry-info {
 
   background-color: var(--brand-color-dark);

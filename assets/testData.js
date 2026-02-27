@@ -18,100 +18,99 @@
 // 3. In the left sidebar, look under Storage for Local Storage
 // 4. Expand Local storage and you should see "http://localhost:63342" or whatever your localhost URI is.
 // ============================================================
-
 const testEntries = [
-    new ConferenceEntry(
-        "1",
-        "Introduction to Web Development",
-        "A beginner-friendly workshop covering the fundamentals of HTML, CSS, and JavaScript. No prior experience required.",
-        "Workshop",
-        "In-Person",
-        "0.00",
-        "Please bring a laptop with a modern browser installed."
-    ),
-    new ConferenceEntry(
-        "2",
-        "AI in Healthcare",
-        "An in-depth keynote exploring how artificial intelligence is transforming diagnostics, treatment planning, and patient care.",
-        "Keynote",
-        "Hybrid",
-        "25.00",
-        "Recording will be available to virtual attendees after the event."
-    ),
-    new ConferenceEntry(
-        "3",
-        "The Future of Remote Work",
-        "A panel discussion featuring industry leaders sharing insights on remote work culture, tooling, and team management.",
-        "Panel Discussion",
-        "Virtual",
-        "10.00",
-        ""
-    ),
-    new ConferenceEntry(
-        "4",
-        "Cybersecurity Best Practices",
-        "A general session covering the latest threats and how organizations can protect themselves in an increasingly connected world.",
-        "General Session",
-        "In-Person",
-        "15.00",
-        "Recommended for IT staff and managers."
-    ),
-    new ConferenceEntry(
-        "5",
-        "Opening Night Networking Mixer",
-        "Kick off the conference with drinks, snacks, and the chance to meet fellow attendees, speakers, and sponsors.",
-        "Networking",
-        "In-Person",
-        "0.00",
-        "Light refreshments provided. Badge required for entry."
-    ),
-    new ConferenceEntry(
-        "6",
-        "Agile Project Management Deep Dive",
-        "A hands-on workshop walking through sprint planning, retrospectives, and agile tooling with real world examples.",
-        "Workshop",
-        "Hybrid",
-        "20.00",
-        "Participants will leave with a ready-to-use sprint template."
-    )
+    {
+        id: "1",
+        title: "Introduction to Web Development",
+        description: "A beginner-friendly workshop covering the fundamentals of HTML, CSS, and JavaScript. No prior experience required.",
+        category: "Workshop",
+        format: "In-Person",
+        entryPrice: "0.00",
+        additionalInfo: "Please bring a laptop with a modern browser installed."
+    },
+    {
+        id: "2",
+        title: "AI in Healthcare",
+        description: "An in-depth keynote exploring how artificial intelligence is transforming diagnostics, treatment planning, and patient care.",
+        category: "Keynote",
+        format: "Hybrid",
+        entryPrice: "25.00",
+        additionalInfo: "Recording will be available to virtual attendees after the event."
+    },
+    {
+        id: "3",
+        title: "The Future of Remote Work",
+        description: "A panel discussion featuring industry leaders sharing insights on remote work culture, tooling, and team management.",
+        category: "Panel Discussion",
+        format: "Virtual",
+        entryPrice: "10.00",
+        additionalInfo: ""
+    },
+    {
+        id: "4",
+        title: "Cybersecurity Best Practices",
+        description: "A general session covering the latest threats and how organizations can protect themselves in an increasingly connected world.",
+        category: "General Session",
+        format: "In-Person",
+        entryPrice: "15.00",
+        additionalInfo: "Recommended for IT staff and managers."
+    },
+    {
+        id: "5",
+        title: "Opening Night Networking Mixer",
+        description: "Kick off the conference with drinks, snacks, and the chance to meet fellow attendees, speakers, and sponsors.",
+        category: "Networking",
+        format: "In-Person",
+        entryPrice: "0.00",
+        additionalInfo: "Light refreshments provided. Badge required for entry."
+    },
+    {
+        id: "6",
+        title: "Agile Project Management Deep Dive",
+        description: "A hands-on workshop walking through sprint planning, retrospectives, and agile tooling with real world examples.",
+        category: "Workshop",
+        format: "Hybrid",
+        entryPrice: "20.00",
+        additionalInfo: "Participants will leave with a ready-to-use sprint template."
+    }
 ];
 
 const testUsers = [
-    new User(
-        "Alice Johnson",
-        "alice.johnson@example.com",
-        "555-123-4567",
-        "34",
-        "123 Maple St, State College, PA"
-    ),
-    new User(
-        "Bob Martinez",
-        "bob.martinez@example.com",
-        "555-234-5678",
-        "28",
-        "Penn State University"
-    ),
-    new User(
-        "Carol White",
-        "carol.white@example.com",
-        "",
-        "Junior",
-        "456 Oak Ave, Bellefonte, PA"
-    ),
-    new User(
-        "David Kim",
-        "david.kim@example.com",
-        "555-345-6789",
-        "22",
-        "Penn State University"
-    ),
-    new User(
-        "Eva Nguyen",
-        "eva.nguyen@example.com",
-        "555-456-7890",
-        "45",
-        "789 Pine Rd, Altoona, PA"
-    )
+    {
+        name: "Alice Johnson",
+        email: "alice.johnson@example.com",
+        phone: "555-123-4567",
+        age: "34",
+        address: "123 Maple St, State College, PA"
+    },
+    {
+        name: "Bob Martinez",
+        email: "bob.martinez@example.com",
+        phone: "555-234-5678",
+        age: "28",
+        address: "Penn State University"
+    },
+    {
+        name: "Carol White",
+        email: "carol.white@example.com",
+        phone: "",
+        age: "Junior",
+        address: "456 Oak Ave, Bellefonte, PA"
+    },
+    {
+        name: "David Kim",
+        email: "david.kim@example.com",
+        phone: "555-345-6789",
+        age: "22",
+        address: "Penn State University"
+    },
+    {
+        name: "Eva Nguyen",
+        email: "eva.nguyen@example.com",
+        phone: "555-456-7890",
+        age: "45",
+        address: "789 Pine Rd, Altoona, PA"
+    }
 ];
 
 localStorage.setItem('entries', JSON.stringify(testEntries));
