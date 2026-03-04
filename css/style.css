@@ -73,5 +73,4 @@ main .container {
 .navbar a:hover, footer a:hover {
     transition: color ease-in-out 0.2s;
     color: var(--brand-color-light);
-    text-shadow: 2px 2px 2px var(--brand-color-dark);
 }
