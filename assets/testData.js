@@ -113,7 +113,34 @@ const testUsers = [
     }
 ];
 
+const testCart = [
+    {
+        id: 1,
+        name: 'Conference T-Shirt',
+        price: 24.99,
+        image: '',
+        quantity: 2
+    },
+    {
+        id: 3,
+        name: 'Speaker Pass Upgrade',
+        price: 49.99,
+        image: '',
+        quantity: 1
+    },
+    {
+        id: 4,
+        name: 'Workshop Materials Kit',
+        price: 14.99,
+        image: '',
+        quantity: 4
+    }
+];
+const totalItems = testCart.reduce((sum, item) => sum + item.quantity, 0);
+
 localStorage.setItem('entries', JSON.stringify(testEntries));
 localStorage.setItem('users', JSON.stringify(testUsers));
+localStorage.setItem('cart', JSON.stringify(testCart));
 
 console.log(`Test data loaded: ${testEntries.length} entries, ${testUsers.length} users.`);
+console.log(`Test cart data loaded: ${testCart.length} unique products, ${totalItems} total items in cart.`);
