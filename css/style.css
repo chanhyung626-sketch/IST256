@@ -57,6 +57,15 @@ h6 {
     color: var(--text-dark);
 }
 
+.navbar .dropdown-menu {
+    background-color: white;
+}
+
+.navbar .dropdown-item {
+    color: var(--text);
+    background-color: transparent;
+}
+
 main .container {
     max-width: 960px;
 }
