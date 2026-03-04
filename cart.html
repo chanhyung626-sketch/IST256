@@ -9,20 +9,31 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 <nav class="navbar navbar-expand-md px-3">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">NittanyConf</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mainNav">
-            <ul class="navbar-nav ms-auto gap-2">
-                <li class="nav-item"><a class="nav-link" href="signup.html">Signup</a></li>
-                <li class="nav-item"><a class="nav-link" href="member-managment.html">Manage Members</a></li>
-                <li class="nav-item"><a class="nav-link" href="conference-search.html">Search Conferences</a></li>
-                <li class="nav-item"><a class="nav-link" href="conference-entry.html">Create a Conference</a></li>
-            </ul>
-        </div>
+  <div class="container">
+    <a class="navbar-brand" href="index.html">NittanyConf</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto gap-2">
+        <li class="nav-item"><a class="nav-link" href="signup.html">Signup</a></li>
+        <li class="nav-item"><a class="nav-link" href="member-managment.html">Manage Members</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Conferences</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="conference-search.html">Search Conferences</a></li>
+            <li><a class="dropdown-item" href="conference-entry.html">Create a Conference</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Shop</a>
+          <ul class="dropdown-menu">
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="cart.html">&#128722; Cart</a></li>
+      </ul>
     </div>
+  </div>
 </nav>
 
 <main class="flex-grow-1 py-5">
