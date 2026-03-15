@@ -15,7 +15,7 @@
     <main class="flex-grow-1 py-5">
         <div class="container">
 
-            <div class="rounded-3 p-4 mb-4" id="conference-entry-info>
+            <div class="rounded-3 p-4 mb-4" id="conference-entry-info">
                 <h5>New Product Entry</h5>
                 <p class="mb-0">Add a new product to our website for others to view.</p>
             </div>
@@ -37,7 +37,7 @@
 
                     <div class="mb-3">
                         <label for="productImage" class="form-label">Product Image <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" id="productImage" accept="image/*" required>
+                        <input type="file" class="form-control" id="productImage" accept="image/*">
                         <div class="invalid-feedback">A product image is required.</div>
                     </div>
 
@@ -90,6 +90,6 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/site.js" defer></script>
-    <script src="js/products/product-entry.js" defer></script>
+    <script type="module" src="js/products/product-entry.js"></script>
 </body>
 </html>
