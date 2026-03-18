@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>API Demo | NittanyConf</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <div id="navbar"></div>
+
+    <main class="flex-grow-1 py-4">
+        <div class="container">
+            <h1 class="mb-2">API Service Demo</h1>
+            <p class="text-muted mb-4">
+                This page exercises every function in <code>service.js</code> against the Express API.
+                Make sure <code>node api/server.js</code> is running on port 3030.
+            </p>
+            <div id="app"></div>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/js/site.js"></script>
+
+    <!--this loads the React page created in js/api-demo.jsx-->
+    <script type="module">
+        import * as Service from '/api/service.js';
+        window.Service = Service;
+        window.dispatchEvent(new Event('service-ready'));
+    </script>
+    <script type="text/babel" src="/js/api-demo.jsx"></script>
+</body>
+</html>
